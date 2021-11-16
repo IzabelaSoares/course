@@ -1,4 +1,4 @@
-package com.example.course.resource;
+package com.example.course.resources;
 
 import com.example.course.entities.User;
 import org.springframework.http.ResponseEntity;
