@@ -14,7 +14,7 @@ import java.time.Instant;
 import java.util.Objects;
 
 @Entity
-@Table(name = "Tb_Order")
+@Table(name = "TbOrder")
 public class Order  implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -26,7 +26,7 @@ public class Order  implements Serializable {
     private Integer orderStatus;
 
     @ManyToOne
-    @JoinColumn(name = "FkIdCliente")
+    @JoinColumn(name = "FkCliente")
     private User client;
 
     public Order() {

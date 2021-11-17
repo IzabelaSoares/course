@@ -1,7 +1,6 @@
 package com.example.course.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -14,7 +13,7 @@ import java.util.List;
 import java.util.Objects;
 
 @Entity
-@Table(name = "Tb_User")
+@Table(name = "TbUser")
 public class User implements Serializable {
 
     private static final long serialVersionUID = 1L;
