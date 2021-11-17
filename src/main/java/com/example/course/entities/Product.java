@@ -1,5 +1,7 @@
 package com.example.course.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -7,9 +9,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.persistence.Transient;
 import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Objects;
@@ -32,6 +33,9 @@ public class Product implements Serializable {
     @ManyToMany
     @JoinTable(name = "TbProductCategory", joinColumns = @JoinColumn(name = "IdProduct"), inverseJoinColumns = @JoinColumn(name = "IdCategory"))
     private Set<Category> categories = new HashSet<>();
+
+    @OneToMany(mappedBy = "id.product")
+    private Set<OrderItem> orderItems = new HashSet<>();
 
     public Product() {
     }
@@ -71,6 +75,15 @@ public class Product implements Serializable {
 
     public Set<Category> getCategories() {
         return categories;
+    }
+
+    @JsonIgnore
+    public Set<Order> getOrderItems() {
+        Set<Order> orderSet = new HashSet<>();
+        for(OrderItem i : orderItems){
+            orderSet.add(i.getOrder());
+        }
+        return orderSet;
     }
 
     public Long getId() {
